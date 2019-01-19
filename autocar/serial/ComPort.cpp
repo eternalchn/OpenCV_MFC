@@ -222,7 +222,7 @@ namespace DebugLabComm {
       return this->_serialPort->Read(pBuf, Count);
   }
 
-  DWORD CComPort::Output(void* pBuf, DWORD Count)
+  DWORD CComPort::Output(const char* pBuf, DWORD Count)
   {
     DWORD dwWriteBytes = 0;
     if (this->IsOverlapped())//�첽ģʽ

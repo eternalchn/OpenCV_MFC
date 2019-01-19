@@ -93,7 +93,7 @@ namespace DebugLabComm {
     //6.输入,输出函数--返回实际个数
     DWORD GetInBufferCount();
     DWORD GetInput(void* pBuf, DWORD Count, DWORD dwMilliseconds = 1000);
-    DWORD Output(void* pBuf, DWORD Count);
+    DWORD Output(const char* pBuf, DWORD Count);
     bool IsOverlapped() { return m_IsOverlapped; }
 
   protected:
