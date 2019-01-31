@@ -28,12 +28,16 @@
 #define IDC_BTSTOPDRIVE                 1015
 #define IDC_PICTURECM1                  1016
 #define IDC_ShowImage                   1016
+#define IDC_ImageBox1                   1016
 #define IDC_PICTURECM2                  1017
 #define IDC_ShowImage3                  1017
+#define IDC_ImageBox3                   1017
 #define IDC_PICTURECM1BUFF              1018
 #define IDC_ShowImage1                  1018
+#define IDC_ImageBox2                   1018
 #define IDC_PICTURECM2BUFF              1019
 #define IDC_ShowImage5                  1019
+#define IDC_ImageBox4                   1019
 #define IDC_EDITRIGHTPWM2               1020
 #define IDC_EDITLIMITPWM2               1020
 #define IDC_BTOPEN                      1021

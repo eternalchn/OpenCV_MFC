@@ -66,7 +66,7 @@ namespace DebugLabComm {
       TwoStopBits
     };
 
-    CComPort();
+    CComPort(LPVOID pSender);
     virtual ~CComPort();
     CComPort(CComPort& cComPort) = delete;
 
@@ -79,7 +79,6 @@ namespace DebugLabComm {
     //2.设置接收函数,中断处理函数 
     void SetReceiveFunc(FOnReceiveData pfnOnReceiveData, LPVOID pSender);
     void SetBreakHandleFunc(FOnComBreak pfnOnComBreak);
-
     //3.获取自身参数
     int GetCurPortNum() { return this->m_CurPortNum; }
     CSerialPort* GetSerialPort();
@@ -113,6 +112,9 @@ namespace DebugLabComm {
     bool m_bIsOpen;
 
   private:
+    virtual void _OnCommReceive(LPVOID pSender, void* pBuf, DWORD InBufferCount) = 0;
+    virtual void _OnCommBreak(LPVOID pSender, DWORD dwMask, COMSTAT stat) = 0;
+    
     HANDLE m_hCloseEvent; //E: A event handle to close thread  //Chinese:结束线程事件
   };
 

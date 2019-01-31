@@ -6,7 +6,8 @@
 
 namespace DebugLabComm {
 
-  CComPort::CComPort() : m_bIsOpen(false)
+  CComPort::CComPort(LPVOID pSender)
+    :m_pSender(pSender)
   {
     this->m_pfnOnReceiveData = NULL;
     this->m_pfnOnComBreak = NULL;
@@ -22,7 +23,7 @@ namespace DebugLabComm {
     if (this->_serialPort)
     {
       if (this->_serialPort->IsOpen())
-      {
+      {        
         this->Close();
       }
       delete this->_serialPort;
@@ -155,8 +156,13 @@ namespace DebugLabComm {
 
   void CComPort::ReceiveData(void* pBuf, DWORD InBufferCount)
   {
-    if (this->m_pfnOnReceiveData)
+    if (this->m_pfnOnReceiveData) {
       this->m_pfnOnReceiveData(this->m_pSender, pBuf, InBufferCount);
+    }
+    else
+    {
+      _OnCommReceive(this->m_pSender, pBuf, InBufferCount);
+    }
   }
 
   void CComPort::SetReceiveFunc(FOnReceiveData pfnOnReceiveData, LPVOID pSender)
@@ -167,11 +173,16 @@ namespace DebugLabComm {
 
   void CComPort::ComBreak(DWORD dwMask)
   {
+    COMSTAT stat;
+    this->_serialPort->GetStatus(stat);
+
     if (this->m_pfnOnComBreak)
     {
-      COMSTAT stat;
-      this->_serialPort->GetStatus(stat);
       this->m_pfnOnComBreak(this->_serialPort, dwMask, stat);
+    }
+    else
+    {
+      _OnCommBreak(this->_serialPort, dwMask, stat);
     }
   }
 
