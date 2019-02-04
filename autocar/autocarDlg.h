@@ -13,6 +13,8 @@ using namespace std;
 using namespace cv;
 // 自定义MFC消息常量 串口数据接收消息 @PostMessageFunc OnReceiveData()
 #define WM_RECV_SERIAL_DATA WM_USER + 101
+using Contors_t = vector<vector<Point>>;
+using Contor_t = vector<Point>;
 
 class CautocarDlg : virtual DebugLabComm::CComPort, public CDialog
 {
@@ -52,10 +54,11 @@ public:
 
 protected:
   HICON appIcon_;
+
 private:
   void _SerialOpen(int commNum = 2, int baudRate = 115200);
-  void _OnCommReceive(LPVOID pSender, void* pBuf, DWORD InBufferCount);
-  void _OnCommBreak(LPVOID pSender, DWORD dwMask, COMSTAT stat);
+  void _OnCommReceive(LPVOID pSender, void* pBuf, DWORD InBufferCount) override;
+  void _OnCommBreak(LPVOID pSender, DWORD dwMask, COMSTAT stat) override;
 
   //TAG:这里ImageBox应该是一个枚举类型，避免错误
   void _ShowImageOnImageBox(int ImageBox, Mat& frame);
@@ -63,7 +66,8 @@ private:
     int x = 0, int y = 0, int w = 48, int h = 48);
 
   /* 图像识别算法 ********************************************/
-  void _BinaryzationMat(Mat & inputMat, Mat & outputMat);
+  void _Binaryzation(Mat & inputMat, Mat & outputMat);
+  Mat _Binaryzation(Mat & inputMat);
 
   CString _msgSerialSend;
   CString _msgSerialReceive;
