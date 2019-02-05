@@ -66,16 +66,36 @@ private:
     int x = 0, int y = 0, int w = 48, int h = 48);
 
   /* 图像识别算法 ********************************************/
-  void _Binaryzation(Mat & inputMat, Mat & outputMat);
-  Mat _Binaryzation(Mat & inputMat);
+  /**
+   * @func: _Binaryzation - 对传入的Mat进行二值化处理
+   * @Message
+   *    摄像头         -(读取图片)->       OpenCV::Mat
+   *    OpenCV::Mat   -(二值化处理)->     黑白的Mat
+   *    黑白的Mat      -(获取轮廓)->       轮廓组
+   *    轮廓组         -(查找最大内轮廓)->  最大内轮廓
+   *    内轮廓         -(计算周长、面积)->  特征值（识别量）
+   */
+  void _Binaryzation(const Mat & inputMat, Mat & outputMat);
+  Mat _Binaryzation(const Mat & inputMat);
+  void _FindContour(Mat & binaryMat, Contor_t &maximumInterContor);
+  Contor_t _FindContour(Mat & binaryMat);
+  const Contor_t & _FindContour();
 
+  /* 私有数据区 *********************************************/
   CString _msgSerialSend;
   CString _msgSerialReceive;
+
+  CvvImage _cvvImage;
 
   VideoCapture _cameraForPic;
   VideoCapture _cameraForPath;
 
-  CvvImage _cvvImage;
+  Mat _binaryMat;
+  Contors_t _contours_all;
+  Contor_t _maximumInterContor;
+  //TAG: 特征值应该唯一，将两个double值变成一个struct会好
+  double _conLength;
+  double _conArea;
 
   //TAG: _mode的类型应该设置为一个 枚举类
   int _mode;
