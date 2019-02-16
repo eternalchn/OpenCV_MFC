@@ -92,6 +92,7 @@
 #define IDC_EDITLINEDEGREE2             1064
 #define IDC_EDITMODEEVERY               1064
 #define IDC_BUTTON1                     1065
+#define IDC_BTTEST                      1065
 
 // Next default values for new objects
 // 

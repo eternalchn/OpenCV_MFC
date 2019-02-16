@@ -49,6 +49,8 @@ public:
   afx_msg void OnBnClickedBt_CloseCamera();
   afx_msg void OnBnClickedBt_AutoDrive();
   afx_msg void OnBnClickedBt_ImageIdentification();
+  afx_msg void OnBnClickedBt_Test();
+  void ImageRecognition(Mat src);
 
   afx_msg void OnTimer(UINT_PTR nIDEvent);
 
@@ -68,24 +70,32 @@ private:
   /* 图像识别算法 ********************************************/
   /**
    * @func: _Binaryzation - 对传入的Mat进行二值化处理
-   * @Message
+   *        _FindContour  - 对传入的Mat进行处理并获取最大内轮廓
+   * @Message 算法一
    *    摄像头         -(读取图片)->       OpenCV::Mat
    *    OpenCV::Mat   -(二值化处理)->     黑白的Mat
    *    黑白的Mat      -(获取轮廓)->       轮廓组
    *    轮廓组         -(查找最大内轮廓)->  最大内轮廓
    *    内轮廓         -(计算周长、面积)->  特征值（识别量）
+   * 
+   * @Message 算法二
+   *    OpenCV 模板匹配算法（Template matching）
    */
   void _Binaryzation(const Mat & inputMat, Mat & outputMat);
   Mat _Binaryzation(const Mat & inputMat);
   void _FindContour(Mat & binaryMat, Contor_t &maximumInterContor);
   Contor_t _FindContour(Mat & binaryMat);
   const Contor_t & _FindContour();
+  int _TemplateMatching(Mat & srcMat);
 
   /* 私有数据区 *********************************************/
   CString _msgSerialSend;
   CString _msgSerialReceive;
 
   CvvImage _cvvImage;
+
+  /* 图形识别用 *********************************************/
+  const vector<pair<Mat, int>> _TARGET_IMAGE_LIST;
 
   VideoCapture _cameraForPic;
   VideoCapture _cameraForPath;
