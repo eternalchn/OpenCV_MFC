@@ -1,6 +1,6 @@
 //{{NO_DEPENDENCIES}}
-// Microsoft Visual C++ generated include file.
-// Used by autocar.rc
+// Microsoft Visual C++ 生成的包含文件。
+// 供 autocar.rc 使用
 //
 #define IDM_ABOUTBOX                    0x0010
 #define IDD_ABOUTBOX                    100
@@ -93,6 +93,8 @@
 #define IDC_EDITMODEEVERY               1064
 #define IDC_BUTTON1                     1065
 #define IDC_BTTEST                      1065
+#define IDC_BUTTON2                     1067
+#define IDC_666                         1067
 
 // Next default values for new objects
 // 
@@ -100,7 +102,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        131
 #define _APS_NEXT_COMMAND_VALUE         32771
-#define _APS_NEXT_CONTROL_VALUE         1066
+#define _APS_NEXT_CONTROL_VALUE         1068
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

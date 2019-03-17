@@ -14,7 +14,7 @@
     <ProjectGuid>{EF92095A-7B7D-47D1-B6B9-8C6C12BE2DC4}</ProjectGuid>
     <RootNamespace>autocar</RootNamespace>
     <Keyword>MFCProj</Keyword>
-    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -123,6 +123,7 @@
     <ClCompile Include="autocar.cpp" />
     <ClCompile Include="autocarDlg.cpp" />
     <ClCompile Include="CvvImage.cpp" />
+    <ClCompile Include="DebugRob.cpp" />
     <ClCompile Include="serial\ComPort.cpp" />
     <ClCompile Include="serial\SerialPort.cpp" />
     <ClCompile Include="stdafx.cpp">
@@ -131,6 +132,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\DebugRob_New\autocar\debugrob.h" />
     <ClInclude Include="autocar.h" />
     <ClInclude Include="autocarDlg.h" />
     <ClInclude Include="CvvImage.h" />

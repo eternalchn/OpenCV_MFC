@@ -5,18 +5,18 @@
 #include "cv.h"
 #include "CvvImage.h"
 #include "opencv.hpp"
-
+#include "debugrob.h"
 #include "./serial/ComPort.h"
 #include "resource.h"
-
 using namespace std;
 using namespace cv;
+using namespace Debug;
 // 自定义MFC消息常量 串口数据接收消息 @PostMessageFunc OnReceiveData()
 #define WM_RECV_SERIAL_DATA WM_USER + 101
 using Contors_t = vector<vector<Point>>;
 using Contor_t = vector<Point>;
 
-class CautocarDlg : virtual DebugLabComm::CComPort, public CDialog
+class CautocarDlg : virtual DebugLabComm::CComPort, public CDialog , public DebugRob
 {
 public:
   explicit CautocarDlg(CWnd* pParent = NULL);
@@ -43,6 +43,8 @@ public:
   void PrintlnToSerial(const string& message);
   void PrintToSerial(const string& message);
   afx_msg LONG OnRecvSerialData(WPARAM wParam, LPARAM lParam);
+  //SendData arrays从unsigned char 改为了 const char
+  void SendData(const char arrays[], int lenth);
 
   /* OpenCV相关函数 *****************************************/
   afx_msg void OnBnClickedBt_OpenCamera();
@@ -52,7 +54,38 @@ public:
   afx_msg void OnBnClickedBt_Test();
   void ImageRecognition(Mat src);
 
+  /* 路线相关函数********************************************/
+  afx_msg void OnBnClickedPatern12();
+  afx_msg void OnBnClickedBtauto12();
   afx_msg void OnTimer(UINT_PTR nIDEvent);
+  int _1To2(void);
+  int _2To3(void);
+  int _2To4(void);
+  int _3To5(void);
+  int _3To6(void);
+  int _4To5(void);
+  int _4To6(void);
+  int _5To7(void);
+  int _5To8(void);
+  int _6To7(void);
+  int _6To8(void);
+  CString m_locationstart;
+  CString m_locationnext;
+  CString m_locationgold;
+  int sign;//现态
+  int next;//次态
+  int step;//步骤
+  
+  /* 两种模式相关函数********************************************/
+  void PointMode(PointMode_t, int16_t angle = 0, uint8_t lineSpeed = 10);//点模式
+  /* 0xF0 0x04 0xhh 0xhh 0xhh 0x0A */
+  void LineMode(uint8_t point, uint8_t delay = 0, uint8_t transSpeed = 40);//线模式
+  /* 0xF0 0x03 0xhh 0xhh 0x0A */
+
+
+
+
+
 
 protected:
   HICON appIcon_;
@@ -109,4 +142,5 @@ private:
 
   //TAG: _mode的类型应该设置为一个 枚举类
   int _mode;
+
 };

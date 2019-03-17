@@ -16,7 +16,7 @@
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// Chinese (Simplified, PRC) resources
+// 中文(简体，中国) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
 LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
@@ -111,6 +111,7 @@ BEGIN
     PUSHBUTTON      "取消",IDCANCEL,356,369,50,14
     DEFPUSHBUTTON   "关闭",IDOK,299,369,50,14
     PUSHBUTTON      "测试按钮",IDC_BTTEST,305,77,37,78
+    PUSHBUTTON      "1 to 2",IDC_BTAUTO12,303,166,50,14
 END
 
 
@@ -172,7 +173,6 @@ BEGIN
     IDD_AUTOCAR_DIALOG, DIALOG
     BEGIN
         LEFTMARGIN, 7
-        RIGHTMARGIN, 412
         TOPMARGIN, 5
         BOTTOMMARGIN, 383
     END
@@ -209,7 +209,7 @@ BEGIN
     IDS_ABOUTBOX            "关于 autocar(&A)..."
 END
 
-#endif    // Chinese (Simplified, PRC) resources
+#endif    // 中文(简体，中国) resources
 /////////////////////////////////////////////////////////////////////////////
 
 
